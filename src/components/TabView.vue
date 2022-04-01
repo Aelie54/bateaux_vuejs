@@ -18,7 +18,6 @@
   </table>
 </template>
 
-
 <script>
 // j'importe ma liste boat du store et le mapstate pour le mapwritable
 import { AllBoat } from "../stores/boats";
