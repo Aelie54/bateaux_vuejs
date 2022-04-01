@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="add(boat)">
-    <h1>Ajouter un Bateaude l'horreur</h1><br />
+    <h1>Ajouter un Bateau de l'horreur</h1><br />
     <img src="https://www.super-hobby.fr/zdjecia/4/7/6/19895_rd.jpg" style="height: 300px"/><br /><br /> 
 
     <input type="text" name="boat_name" id="name" placeholder="nom du bateau" v-model="boat.name"/><br />
@@ -13,14 +13,15 @@
 
     <input type="submit" value="Ajouter un hollandais volant" id="submit"/><br /><br />
   </form>
-  <TabView />
+  <!--<TabView />-->
 </template>
 
 <script>
 // mes imports : ma page mère, le mapwrittable et ma liste!
-import TabView from "../components/TabView.vue";
+  // import TabView from "../components/TabView.vue";
 import { mapState, mapWritableState } from "pinia";
 import  { AllBoat } from "../stores/boats";
+import {useRouter, useRoute} from "vue-router";
 
 //mon conteneur d'info pour envoie au store
 export default {
@@ -37,7 +38,7 @@ export default {
 
   //j'ajoute ma page mère! avec toutes ses entrées!
   components: {
-    TabView
+    //TabView
   },
   // pour pouvoir ecrire dans mon store et ma liste
   computed: {
@@ -54,10 +55,12 @@ export default {
         typeof this.boat.men === "string" &&
         this.boat.price > 0
       ) {
-        //calcul d ela rentabilité d'après prix
+        //calcul de la rentabilité d'après prix
           boat.rentability = this.boat.price * 12;
           //ajout de l'objet boat dans la liste
           this.list.push(boat);
+          // faire la commande dans le temrinal : " npm install vue-router@4 "
+          this.$router.push("/dashboard");
       }
       return
     },
